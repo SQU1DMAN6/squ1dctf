@@ -27,7 +27,7 @@ while running:
     color = util.getColor(player_pos, centerpoint)
     
     pygame.draw.line(screen, "black", linestartpos, lineendpos, width=1)
-    dragging = False
+   
     
     bluebase = pygame.draw.rect(screen, "blue", [20, middlepoint - 60, 60, 120], 3)
     redbase = pygame.draw.rect(screen, "red", [screenwidth - 80, middlepoint - 60, 60, 120], 3)
@@ -63,18 +63,19 @@ while running:
 
     print("player_pos.x:", player_pos.x, "bf1.x: ", bf1.x)
     print("player_pos.y:", player_pos.y, "bf1.y: ", bf1.y)
+
+    dragging = False
+    
+    # Check for dragging
     if player_pos.x > bf1.x and player_pos.x < bf1.x + 24 and player_pos.y > bf1.y and player_pos.y < bf1.y + 16:
         if keys[pygame.K_SPACE]:
-            dragging = True
-        else:
-            dragging = False
-    else:
-        dragging = False
-    
-    while dragging:
+            dragging_flag = True
+
+    if not keys[pygame.K_SPACE]:
+        dragging_flag = False
+
+    if dragging_flag:
         bf1 = pygame.draw.rect(screen, "blue", [player_pos.x, player_pos.y, 24, 16], 120)
-        if not keys[pygame.K_SPACE]:
-            dragging = False
     
     # flip() the display to put your work on screen
     pygame.display.flip()
