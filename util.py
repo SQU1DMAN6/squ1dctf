@@ -5,3 +5,8 @@ def getColor(player_pos, centerpoint):
         color = (0, 255, 0)
     return color
 
+def checkflagcap(x, y, x2, y2):
+        if x > x2 and x < x2 + 120 and y > y2 and y < y2 + 120:
+            return True
+        else:
+            return False
